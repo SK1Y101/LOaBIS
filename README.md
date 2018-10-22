@@ -9,16 +9,16 @@ Originally intended as a small-scale project to be run on my rasp-pi, It soon gr
 And hence it's ease of modding arose, now considered to be its core feature.  
 
 # Creditation
-Author:  
+Author(s):  
 Jack Lloyd-Walters  (Skiy)  
 2015-Current  
-  
-Development:  
+
+Developer(s):  
 Jack Lloyd-Walters  (Skiy)  
 Luke Skinner        (Xectron)  
-  
-Alpha Testing:  
+
+Alpha Tester(s):  
 Jack Lloyd-Walters  (Skiy)  
-  
-Beta Testing:  
-None  
+
+Beta Tester(s):  
+None (Apply now!)  
