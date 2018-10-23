@@ -1,4 +1,4 @@
-import sys, time
+import sys, time, os
 from datetime import datetime
 
 def _say(text=""):
@@ -24,3 +24,7 @@ if __name__=="__main__":
             if x in modules:
                 modules.pop(modules.index(x))
         _log(str(len(modules))+" Modules located: "+str(modules))
+
+    except Exception as e:
+        _log("Software closed unexpectedly, consider submitting log to developers",1)
+        _log("Error: "+str(type(e))+"; "+str(e)+"\n",1)
