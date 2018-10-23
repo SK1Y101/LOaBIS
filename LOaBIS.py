@@ -1,17 +1,17 @@
 import sys, time
 from datetime import datetime
 
-def _say(text=""):
-    for x in "System: "+str(text)+"\n":
+def _say(txt=""):
+    for x in "System: "+str(txt)+"\n":
         sys.stdout.write(x)
         time.sleep(0.003)
 
-def _log(text="",say=False):
+def _log(txt="",say=0):
     y=open("log.txt","a")
-    y.write("["+str(datetime.now())+"] - "+text[0].upper()+text[1:]+"\n")
+    y.write("["+str(datetime.now())+"] - "+txt[0].upper()+txxt[1:]+"\n")
     y.close()
     if say:
-        _say(text)
+        _say(txt)
 
 if __name__=="__main__":
     try:

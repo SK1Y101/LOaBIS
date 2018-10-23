@@ -14,15 +14,14 @@ The name LOaBIS actually originiates as a backronym, inspired by portals "GLaDOS
 
 # Creditation
 Author(s):  
-Jack Lloyd-Walters  (Skiy)  
-2015-Current  
+2015-Current:    Jack Lloyd-Walters  (Skiy)  
 
 Developer(s):  
-Jack Lloyd-Walters  (Skiy)  
-Luke Skinner        (Xectron)  
+2015-Current:    Jack Lloyd-Walters  (Skiy)  
+2016-Current:    Luke Skinner        (Xectron)  
 
 Alpha Tester(s):  
-Jack Lloyd-Walters  (Skiy)  
+2016-Current:    Jack Lloyd-Walters  (Skiy)  
 
 Beta Tester(s):  
-None (Apply now!)  
+None  
