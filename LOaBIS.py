@@ -29,7 +29,7 @@ if __name__=="__main__":
             if x in modules:
                 modules.pop(modules.index(x))
         _log(str(len(modules))+" Modules located: "+str(modules))
-        
+
         from _core import *
 
     except Exception as e:
