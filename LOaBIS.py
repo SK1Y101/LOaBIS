@@ -25,11 +25,11 @@ if __name__=="__main__":
         globals()["shutdown"]=False
         modules=next(os.walk(os.getcwd()))[1]
         modules.sort()
-        for x in ["_core","__pycache__"]:
+        for x in ["__pycache__"]:
             if x in modules:
                 modules.pop(modules.index(x))
         _log(str(len(modules))+" Modules located: "+str(modules))
-        
+
         from _core import *
 
     except Exception as e:
