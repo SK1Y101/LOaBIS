@@ -31,6 +31,11 @@ if __name__=="__main__":
         _log(str(len(modules))+" Modules located: "+str(modules))
 
         from _core import *
+        
+        modinfo=[]
+        for x in modules:
+            modinfo.append(module.getinfo(x))
+        print(modinfo)
 
     except Exception as e:
         _elog(e)
