@@ -25,16 +25,18 @@ if __name__=="__main__":
         globals()["shutdown"]=False
         modules=next(os.walk(os.getcwd()))[1]
         modules.sort()
-        for x in ["__pycache__"]:
+        for x in ["__pycache__",".git"]:
             if x in modules:
                 modules.pop(modules.index(x))
         _log(str(len(modules))+" Modules located: "+str(modules))
 
         from _core import *
-        
+
+        print("loading")
         modinfo=[]
         for x in modules:
-            modinfo.append(module.getinfo(x))
+            print(x)
+            modinfo.append(getinfo(x))
         print(modinfo)
 
     except Exception as e:
