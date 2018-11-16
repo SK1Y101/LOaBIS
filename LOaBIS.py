@@ -22,22 +22,20 @@ if __name__=="__main__":
     try:
         start_time=datetime.now()
         _log("Initialising software",1)
+        from _core import *
         globals()["shutdown"]=False
-        modules=next(os.walk(os.getcwd()))[1]
+        avoid=["__pycache__",".git"]
+        modules=getexcept(next(os.walk(os.getcwd()))[1],avoid)
         modules.sort()
-        for x in ["__pycache__",".git"]:
-            if x in modules:
-                modules.pop(modules.index(x))
         _log(str(len(modules))+" Modules located: "+str(modules))
 
-        from _core import *
-
-        print("loading")
+        _log("Loading module data",1)
         modinfo=[]
         for x in modules:
-            print(x)
             modinfo.append(getinfo(x))
-        print(modinfo)
+        core=getdat(modinfo,"LOaBIS Core")
+        _log(str(core[0])+" v"+str(core[1])+" Loaded",1)
+        os.system("title "+str(core[0])+" v"+str(core[1])+" - "+str(core[2]))
 
     except Exception as e:
         _elog(e)
