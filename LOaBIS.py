@@ -39,12 +39,12 @@ if __name__=="__main__":
         subprocess.call("title "+str(core[0])+" v"+str(core[1])+" - "+str(core[3]),shell=True)
 
         stype=[0,0,0,[]]
-        _log("Fetching pip modules (if any)",1)
+        _log("Fetching pip modules",1)
         pipmods=getpip()
         _log("Fetching dependancies",1)
         for x in getexcept(modinfo,"LOaBIS Core"):
             tmp=0
-            for y in x[5]:
+            for y in x[6]:
                 if getdat(modinfo,y):
                     modinfo=getexcept(modinfo,x)+x
                 else:
@@ -52,7 +52,7 @@ if __name__=="__main__":
                     stype[0]+=1
                     tmp+=1
                     break
-            for y in x[6]:
+            for y in x[7]:
                 if not getdat(pipmods,y):
                     tmp+=module.inst(y)
             b=simver(core[1],x[2])
@@ -62,7 +62,7 @@ if __name__=="__main__":
                 tmp+=1
             if tmp>0:
                 modinfo.pop(modinfo.index(x))
-                stype[2].append(x[0])
+                stype[3].append(x[0])
 
         _log(str(stype[2])+" stable modules loaded")
         _log(str(stype[1])+" unstable modules loaded")

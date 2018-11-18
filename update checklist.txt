@@ -7,9 +7,9 @@ LOaBIS:
         1) version                                    check
         2) name                                       check
         3) dependencies                               check
-    4) remove non functioning Modules                 check
+    4) remove non functioning Modules                 ~
         1) if a dependency is not loaded              check
-        2) if the version is incompatible             check
+        2) if the version is incompatible             .
     5) fetch module commands/functions                .
     6) fetch miscellaneous module details             .
         1) startfuncs                                 .
