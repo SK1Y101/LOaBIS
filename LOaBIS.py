@@ -36,9 +36,9 @@ if __name__=="__main__":
             modinfo.append(getinfo(x))
         core=getdat(modinfo,"LOaBIS Core")
         _log(str(core[0])+" v"+str(core[1])+" Loaded",1)
-        subprocess.call("title "+str(core[0])+" v"+str(core[1])+" - "+str(core[2]),shell=True)
+        subprocess.call("title "+str(core[0])+" v"+str(core[1])+" - "+str(core[3]),shell=True)
 
-        stype=[0,0,[]]
+        stype=[0,0,0,[]]
         _log("Fetching pip modules (if any)",1)
         pipmods=getpip()
         _log("Fetching dependancies",1)
@@ -48,16 +48,26 @@ if __name__=="__main__":
                 if getdat(modinfo,y):
                     modinfo=getexcept(modinfo,x)+x
                 else:
+                    _log(str(y)+" not installed for "+str(x[0]),1)
+                    stype[0]+=1
                     tmp+=1
                     break
             for y in x[6]:
                 if not getdat(pipmods,y):
                     tmp+=module.inst(y)
+            b=simver(core[1],x[2])
+            if b:
+                stype[b]+=1
+            else:
+                tmp+=1
             if tmp>0:
                 modinfo.pop(modinfo.index(x))
                 stype[2].append(x[0])
-                
-        _log(str(len(stype[2]))+" modules missing dependancies",1)
+
+        _log(str(stype[2])+" stable modules loaded")
+        _log(str(stype[1])+" unstable modules loaded")
+        _log(str(stype[0])+" modules prevented from loading: "+str(stype[3]),0)
+        _say(str(sum(stype[1:3]))+" modules loaded, "+str(stype[0])+" prevented from loading")
 
     except Exception as e:
         _elog(e)

@@ -16,6 +16,14 @@ def chkvar(var="",defa=""):
         return var
     return defa
 
+def simver(cv,mv):
+    if cv.split(".")[0:2]+["0"] <= mv.split(".") <= cv.split("."):
+        return 2
+    elif cv.split(".")[0:2]==mv.split(".")[0:2]:
+        return 1
+    else:
+        return 0
+
 def getpip():
     mod=str(getmods()).replace(" ","").replace("pip","").replace("setuptools","")
     mod=''.join([i for i in mod if not i.isdigit()])
