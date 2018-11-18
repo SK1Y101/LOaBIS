@@ -1,4 +1,4 @@
-import os, sys
+import os, sys, subprocess
 
 ostype=sys.platform
 globals()["sep"]="/"
@@ -6,20 +6,43 @@ if "win" in ostype:
     globals()["sep"]="\\"
 
 def setup():
-    module.module("LOaBIS Core","0.3.0")
+    module.module("_Core","0.3.0","0.3.0","LOaBIS Core","https://github.com/SK1Y101/LOaBIS","Skiy")
+    #Short name (name of folder), version (version of the mod)
+    #compat (compatible loabis version), long name (name of the module itself_
+    #url (if one is available), author (evident)
 
 def chkvar(var="",defa=""):
     if var:
         return var
     return defa
 
+def getpip():
+    mod=str(getmods()).replace(" ","").replace("pip","").replace("setuptools","")
+    mod=''.join([i for i in mod if not i.isdigit()])
+    mod = list(filter(None, mod.replace(".","").split("\\r\\n")))
+    return mod[2:-1]
+
+def getmods():
+    try:
+        subprocess.call("python -m pip install --upgrade pip",shell=True)
+    except:
+        pass
+    try:
+        try:
+            return subprocess.check_output("pip3 list",shell=True)
+        except:
+            return subprocess.check_output("pip list",shell=True)
+    except:
+        return ""
+
 def getinfo(name=""):
     global sep
     with open(str(name)+sep+"__init__.py","r") as m:
         a=m.read()
-    name,ver,lname,url,author=module.fetch(a,"module.module(",")",["","","","",""])
-    depends=module.fetch("module.needs(",")",[])
-    return [name,ver,lname,url,author,depends]
+    name,ver,compat,lname,url,author=module.fetch(a,"module.module(",")",["","0.0","0.0","","",""])
+    depends=module.fetch("module.depends([","])",[])
+    needs=module.fetch("module.needs([","])",[])
+    return [name,ver,lname,url,author,depends,needs]
 
 def setlen(var="",leng=1,tp=0,fl="0"):
     while len(var) < leng:
