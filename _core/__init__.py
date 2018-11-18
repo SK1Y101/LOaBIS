@@ -48,9 +48,15 @@ def getinfo(name=""):
     with open(str(name)+sep+"__init__.py","r") as m:
         a=m.read()
     name,ver,compat,lname,url,author=module.fetch(a,"module.module(",")",["","0.0","0.0","","",""])
-    depends=module.fetch("module.depends([","])",[])
-    needs=module.fetch("module.needs([","])",[])
-    return [name,ver,lname,url,author,depends,needs]
+    depends=mklst(module.fetch("module.depends([","])",[]))
+    needs=mklst(module.fetch("module.needs([","])",[]))
+    return [name,ver,compat,lname,url,author,depends,needs]
+
+def mklst(var=""):
+    if var != list(var):
+        return [var]
+    else:
+        return var
 
 def setlen(var="",leng=1,tp=0,fl="0"):
     while len(var) < leng:
