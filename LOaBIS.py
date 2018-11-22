@@ -68,6 +68,20 @@ if __name__=="__main__":
         _log(str(stype[1])+" unstable modules loaded")
         _log(str(stype[0])+" modules prevented from loading: "+str(stype[3]),0)
         _say(str(sum(stype[1:3]))+" modules loaded, "+str(stype[0])+" prevented from loading")
+        
+        for x in getexcept(modinfo,"LOaBIS Core"):
+            a=""
+            try:
+                exec("from "+str(x[0])+" import *")
+                a=1
+            except Exception as e:
+                _log("unknown error, "+str(x[0])+" not loaded",1)
+                _elog(e,0)
+                modinfo.pop(modinfo.index(x))
+            if a:
+                yes
+                #load all the functions
+        interface()
 
     except Exception as e:
         _elog(e)

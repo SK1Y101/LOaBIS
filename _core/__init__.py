@@ -47,9 +47,9 @@ def getinfo(name=""):
     global sep
     with open(str(name)+sep+"__init__.py","r") as m:
         a=m.read()
-    name,ver,compat,lname,url,author=module.fetch(a,"module.module(",")",["","0.0","0.0","","",""])
-    depends=mklst(module.fetch("module.depends([","])",[]))
-    needs=mklst(module.fetch("module.needs([","])",[]))
+    _name,ver,compat,lname,url,author=module.fetch(a,"module.module(",")",[str(name),"0.0","0.0","","",""])
+    depends=mklst(module.fetch(a,"module.depends([","])",[]))
+    needs=mklst(module.fetch(a,"module.needs([","])",[]))
     return [name,ver,compat,lname,url,author,depends,needs]
 
 def mklst(var=""):
@@ -74,9 +74,7 @@ def getdat(data=[],search="",defa=""):
 
 def getexcept(data=[],search="",defa=""):
     tmp=data
-    if list(search)!=search:
-        search=[search]
-    for y in search:
+    for y in mklst(search):
         for x in data:
             if y in x:
                 data.pop(data.index(x))
