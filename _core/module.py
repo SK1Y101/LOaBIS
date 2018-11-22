@@ -1,10 +1,17 @@
 import sys, subprocess
 from . import *
+globals()["startfunc"]=[]
+globals()["perfunc"]=[]
+globals()["endfunc"]=[]
+
 def module(name="",version="",longname="",url="",author=""):
     '''defines the module, allowing it to be loaded into loabis'''
     return True
 
 def needs(modules=[]):
+    return True
+
+def depends(modules=[]):
     return True
 
 def fetch(text="",start="",end="/n",default=""):
