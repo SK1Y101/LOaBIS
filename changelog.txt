@@ -3,3 +3,5 @@ minver:0.3.0
 maxver:0.3.0
 required:N/A
 rewrote the codebase from scratch
+Some mild optimisation, redundancies in the original codebase should have hopefully been omitted
+Updated readme.md with future plans, etc…
