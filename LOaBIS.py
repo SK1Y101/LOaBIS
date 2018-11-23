@@ -1,8 +1,8 @@
-import sys, time, os, subprocess
+import sys, time, os, subprocess, csv
 from datetime import datetime
 
 def _elog(err="",say=1):
-    _log("Error: "+str(type(err))+"; "+str(err)+"\n")
+    _log("Error: "+str(type(err))+"; "+str(err))
     if say:
         _say("Software encountered an error, consider submitting log to developers","Error")
 
@@ -12,9 +12,8 @@ def _say(txt="",cli="System"):
         time.sleep(0.003)
 
 def _log(txt="",say=0):
-    y=open("log.txt","a")
-    y.write("["+str(datetime.now())+"] - "+txt[0].upper()+txt[1:]+"\n")
-    y.close()
+    with open("log.txt","a") as y:
+        y.write("["+str(datetime.now())+"] - "+txt[0].upper()+txt[1:]+"\n")
     if say:
         _say(txt)
 
@@ -66,21 +65,45 @@ if __name__=="__main__":
 
         _log(str(stype[2])+" stable modules loaded")
         _log(str(stype[1])+" unstable modules loaded")
-        _log(str(stype[0])+" modules prevented from loading: "+str(stype[3]),0)
+        _log(str(stype[0])+" modules prevented from loading: "+str(stype[3]))
         _say(str(sum(stype[1:3]))+" modules loaded, "+str(stype[0])+" prevented from loading")
         
-        for x in getexcept(modinfo,"LOaBIS Core"):
+        import_start=datetime.now()
+        for x in modinfo:
             a=""
             try:
-                exec("from "+str(x[0])+" import *")
-                a=1
+                if x != core:
+                    exec("from "+str(x[0])+" import *")
+                try:
+                    b=[]
+                    with open(str(x[0])+sep+"commands.txt","r") as f:
+                        for row in csv.reader(f):
+                            c=row[0].split(":")[1]
+                            module.funcs.append(c)
+                            module.cwords.append(str(row[0].split(":")[0]+" ").replace("  "," "))
+                            module.desc.append(row[1])
+                            b.append(c)
+                    _log("Imported functions from "+str(x[0])+"; "+str(b))
+                except Exception as e:
+                    _elog(e)
             except Exception as e:
                 _log("unknown error, "+str(x[0])+" not loaded",1)
                 _elog(e,0)
                 modinfo.pop(modinfo.index(x))
             if a:
-                yes
+                a=1#yes
                 #load all the functions
+        module.funcs.append("null")
+        module.cwords.append("null")
+        module.desc.append("null")
+        
+        import_time=divmod((datetime.now()-import_start).total_seconds(),60)
+        _log("Function initialisation complete, took "+str(import_time[0]*60+import_time[1])+" seconds")
+
+        elapsed_time=divmod((datetime.now()-start_time).total_seconds(),60)
+        _log("Startup successfull, took "+str(elapsed_time[0]*60+elapsed_time[1])+" seconds")
+
+        _log("Initialisation complete, loading interface",1)
         interface()
 
     except Exception as e:
