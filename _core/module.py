@@ -3,6 +3,9 @@ from . import *
 globals()["startfunc"]=[]
 globals()["perfunc"]=[]
 globals()["endfunc"]=[]
+globals()["funcs"]=[]
+globals()["cwords"]=[]
+globals()["desc"]=[]
 
 def module(name="",version="",longname="",url="",author=""):
     '''defines the module, allowing it to be loaded into loabis'''
