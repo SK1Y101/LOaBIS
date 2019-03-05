@@ -10,13 +10,13 @@ LOaBIS:
     4) remove non functioning Modules                 Check
         1) if a dependency is not loaded              check
         2) if the version is incompatible             Check
-    5) fetch module commands/functions                ~
-    6) fetch miscellaneous module details             .
-        1) startfuncs                                 .
-        2) endfuncs                                   .
-        3) persistfuncs                               .
-        4) replacement functions                      .
-    7) execute startfuncs                             .
+    5) fetch module commands/functions                check
+    6) fetch miscellaneous module details             check
+        1) startfuncs                                 check
+        2) endfuncs                                   check
+        3) persistfuncs                               check
+        4) replacement functions                      check
+    7) execute startfuncs                             check
     8) launch persistence script                      .
     9) launch ui                                      .
 

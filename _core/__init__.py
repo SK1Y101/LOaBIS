@@ -7,8 +7,14 @@ if "win" in ostype:
 
 def setup():
     module.module("_Core","0.3.0","0.3.0","LOaBIS Core","https://github.com/SK1Y101/LOaBIS","Skiy")
+    module.shutdown()
+    module.startup()
+    module.depends()
+    module.needs()
+    module.persist()
+    module.replace()
     #Short name (name of folder), version (version of the mod)
-    #compat (compatible loabis version), long name (name of the module itself_
+    #compat (compatible loabis version), long name (name of the module itself)
     #url (if one is available), author (evident)
 
 def chkvar(var="",defa=""):
@@ -48,15 +54,32 @@ def getinfo(name=""):
     with open(str(name)+sep+"__init__.py","r") as m:
         a=m.read()
     _name,ver,compat,lname,url,author=module.fetch(a,"module.module(",")",[str(name),"0.0","0.0","","",""])
-    depends=mklst(module.fetch(a,"module.depends([","])",[]))
-    needs=mklst(module.fetch(a,"module.needs([","])",[]))
-    return [name,ver,compat,lname,url,author,depends,needs]
+    depends=mklst(module.fetch(a,"module.depends(",")",[],dln=0))
+    needs=mklst(module.fetch(a,"module.needs(",")",[],dln=0))
+    star,pstar=mklst(splitmod(module.fetch(a,"module.startup(",")",[["",""]],"],[")))
+    shut=mklst(module.fetch(a,"module.shutdown(",")",[],dln=0))
+    pers=mklst(module.fetch(a,"module.persist(",")",[],dln=0))
+    repl=mklst(module.fetch(a,"module.replace(",")",[],"],[",dln=0))
+
+    return [name,ver,compat,lname,url,author,depends,needs,star,shut,pers,pstar,repl]
 
 def mklst(var=""):
-    if var != list(var):
+    if var in ['',['']]:
+        return ''
+    elif var != list(var):
         return [var]
     else:
         return var
+
+def splitmod(c=[]):
+    try:
+        a=[[],[],[]]
+        if c[0][0] != "":
+            for x in range(len(c)):
+                a[int(c[x][1])].append(c[x][0])
+        return [a[0]+a[2],a[1]+a[2]]
+    except:
+        return ["",""]
 
 def setlen(var="",leng=1,tp=0,fl="0"):
     while len(var) < leng:

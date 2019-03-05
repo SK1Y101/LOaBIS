@@ -1,7 +1,8 @@
-0.3.0: - The Interface update
+﻿0.3.0: - The Interface update
 minver:0.3.0
 maxver:0.3.0
 required:N/A
 rewrote the codebase from scratch
+added the program to github to allow for better sharing and editing
 Some mild optimisation, redundancies in the original codebase should have hopefully been omitted
 Updated readme.md with future plans, etc…
