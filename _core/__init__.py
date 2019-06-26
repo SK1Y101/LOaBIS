@@ -1,21 +1,50 @@
 import os, sys, subprocess
 
+sys.path.insert(1, os.getcwd())
+from LOaBIS import *
+
 ostype=sys.platform
 globals()["sep"]="/"
+globals()["coremem"]=[]
+globals()["self"]=str(os.path.basename(sys.argv[0]))
 if "win" in ostype:
     globals()["sep"]="\\"
 
 def setup():
     module.module("_Core","0.3.0","0.3.0","LOaBIS Core","https://github.com/SK1Y101/LOaBIS","Skiy")
+    #Short name (name of folder), version (version of the mod)
+    #compat (compatible loabis version), long name (name of the module itself)
+    #url (if one is available), author (evident)
     module.shutdown()
-    module.startup()
+    module.startup([backup],[0])
     module.depends()
     module.needs()
     module.persist()
     module.replace()
-    #Short name (name of folder), version (version of the mod)
-    #compat (compatible loabis version), long name (name of the module itself)
-    #url (if one is available), author (evident)
+
+def getcore():
+    log("Retrieving Backup",1)
+    try:
+        globals()["coremem"]=getfile("_core/corememory.txt")
+        log("Backup retrieved")
+    except:
+        globals()["coremem"]=[]
+        log("Backup not found")
+
+def backup():
+    if not coremem:
+        getcore()
+    cc=getrange(coremem,"<backup>","</backup>",getfile(self),0)
+    log("Comparing "+str(self)+" to Backup")
+    if getfile(self)!=cc:
+        log("Core modified, requesting pass")
+        if input("Corepass required:\n> ")!="LOaBIS":
+            savefile(self,cc)
+            log("Core restored to backup")
+        else:
+            savefile("_core/corememory.txt")
+            log("Core overwrite authorised")
+    log("Backup check complete",1)
 
 def chkvar(var="",defa=""):
     if var:
@@ -65,7 +94,7 @@ def getinfo(name=""):
 
 def mklst(var=""):
     if var in ['',['']]:
-        return ''
+        return []
     elif var != list(var):
         return [var]
     else:
@@ -89,6 +118,22 @@ def setlen(var="",leng=1,tp=0,fl="0"):
             var=str(var)+fl
     return var[0:leng]
 
+def getrange(data=[],searcha="",searchb="",defa="",ic=1):
+    a,b=0,[]
+    for x in data:
+        if searchb in x:
+            a=0
+        if a!=0:
+            b.append(x)
+        if searcha in x:
+            a=1
+    if ic:
+        b=[searcha]+b+[searchb]
+    if b:
+        return b
+    else:
+        return defa
+
 def getdat(data=[],search="",defa=""):
     for x in data:
         if search in x:
@@ -102,6 +147,14 @@ def getexcept(data=[],search="",defa=""):
             if y in x:
                 data.pop(data.index(x))
     return chkvar(tmp,defa)
+
+def getfile(dire=""):
+    with open(dire,"r") as f:
+        return f.readlines()
+
+def savefile(dire="",data=[]):
+    with open(dire,"w") as f:
+        f.writelines(data)
 
 if __name__ != "__main__":
     from . import module

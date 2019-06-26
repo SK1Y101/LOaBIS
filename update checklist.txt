@@ -17,7 +17,11 @@ LOaBIS:
         3) persistfuncs                               check
         4) replacement functions                      check
     7) execute startfuncs                             check
-    8) launch persistence script                      .
+        1) check LOaBIS backup                        check
+        2) compare backup to current                  check
+        3) ask for password                           check
+        4) replace backup or code depending on pass   check
+    8) launch persistence script                      ~
     9) launch ui                                      .
 
 2) User interface
