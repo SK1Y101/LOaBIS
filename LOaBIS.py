@@ -1,4 +1,4 @@
-import sys, time, os, subprocess, csv, importlib
+import sys, time, os, subprocess, csv, importlib, threading
 from datetime import datetime
 from tkinter import *
 from tkinter.ttk import *
@@ -32,12 +32,16 @@ def log(txt="",sy=0):
     if sy:
         say(txt)
 
-def interface(glob=[]):
-    return True
+def interface():
+    ui=genwindow(str(core[0])+" v"+str(core[1])+" - "+str(core[3]))
+    globals()["text"]=Text(ui,width=30,height=8)
+    text.pack()
+    
+    mainloop()
 
 if __name__=="__main__":
     try:
-        globals()["shutdown"],globals()["ui"]=False,False
+        globals()["shutdown"],globals()["Ui_loaded"]=False,False
         start_time=datetime.now()
         log("Initialising software",1)
         from _core import *
@@ -156,7 +160,10 @@ if __name__=="__main__":
         log("Startup successfull, took "+str(elapsed_time[0]*60+elapsed_time[1])+" seconds")
 
         log("Initialisation complete, loading interface",1)
-        interface()
+        ui=threading.Thread(target=interface,name="Ui")
+        ui.start()
+        
+        say("It worked")
 
         if module.endfunc:
             log("Running shutdown functions",1)
