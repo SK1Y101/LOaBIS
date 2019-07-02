@@ -1,4 +1,6 @@
 import os, sys, subprocess
+from tkinter import *
+from tkinter.ttk import *
 
 sys.path.insert(1, os.getcwd())
 from LOaBIS import *
@@ -7,6 +9,7 @@ ostype=sys.platform
 globals()["sep"]="/"
 globals()["coremem"]=[]
 globals()["self"]=str(os.path.basename(sys.argv[0]))
+globals()["iconpath"]=[]
 if "win" in ostype:
     globals()["sep"]="\\"
 
@@ -92,6 +95,7 @@ def getinfo(name=""):
 
     return [name,ver,compat,lname,url,author,depends,needs,star,shut,pers,pstar,repl]
 
+#data manipulation
 def mklst(var=""):
     if var in ['',['']]:
         return []
@@ -148,6 +152,7 @@ def getexcept(data=[],search="",defa=""):
                 data.pop(data.index(x))
     return chkvar(tmp,defa)
 
+#file manipulation
 def getfile(dire=""):
     with open(dire,"r") as f:
         return f.readlines()
@@ -155,6 +160,27 @@ def getfile(dire=""):
 def savefile(dire="",data=[]):
     with open(dire,"w") as f:
         f.writelines(data)
+
+#interface defaults below
+def genwindow(title="",width=0,height=0,mwidth=0,mheight=0,posx=0,posy=0,resize=True):
+    log("generating tkinter window "+title)
+    new=Tk()
+    new.title(title)
+    seticon(new)
+    if (width>0) and (height>0):
+        new.geometry('%dx%d' % (max(width,mwidth+10),max(height,mheight+10)))
+    if (mwidth>0) and (mheight>0):
+        new.minsize(int(min(width,mwidth)),int(min(height,mheight)))
+    if not resize:
+        new.resizable(0,0)
+    new.geometry("+"+str(posx)+"+"+str(posy))
+    return new
+
+def seticon(main,icon=iconpath):
+    try:
+        return main.iconbitmap(icon)
+    except:
+        return False
 
 if __name__ != "__main__":
     from . import module
