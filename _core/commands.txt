@@ -1,0 +1,4 @@
+goodbye:closesoftware,Terminates the program safely, saving data.
+quit:closesoftware,Terminates the program safely, saving data.
+exit:closesoftware,Terminates the program safely, saving data.
+closesoftware:closesoftware,Terminates the program safely, saving data.
