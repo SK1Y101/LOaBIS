@@ -12,13 +12,14 @@ globals()["self"]=str(os.path.basename(sys.argv[0]))
 globals()["iconpath"]=[]
 if "win" in ostype:
     globals()["sep"]="\\"
+globals()["username"]=os.path.expanduser("~").split(sep)[-1]
 
 def setup():
     module.module("_Core","0.3.0","0.3.0","LOaBIS Core","https://github.com/SK1Y101/LOaBIS","Skiy")
     #Short name (name of folder), version (version of the mod)
     #compat (compatible loabis version), long name (name of the module itself)
     #url (if one is available), author (evident)
-    module.shutdown()
+    module.shutdown([forcebackup])
     module.startup([backup],[0])
     module.depends()
     module.needs()
@@ -35,6 +36,7 @@ def getcore():
         log("Backup not found")
 
 def backup():
+    global coremem
     if not coremem:
         getcore()
     cc=getrange(coremem,"<backup>","</backup>",getfile(self),0)
@@ -45,8 +47,27 @@ def backup():
             savefile(self,cc)
             log("Core restored to backup")
         else:
-            savefile("_core/corememory.txt")
+            a=[i for i, x in enumerate(coremem) if x == cc[0]]
+            coremem = coremem[:a[0]]+getfile(self)+coremem[a[0]+len(cc):]
+            savefile("_core/corememory.txt",coremem)
             log("Core overwrite authorised")
+    log("Backup check complete",1)
+
+def closesoftware(text=""):
+    return True
+
+def forcebackup():
+    global coremem
+    if not coremem:
+        getcore()
+    cc=getrange(coremem,"<backup>","</backup>",getfile(self),0)
+    log("Comparing "+str(self)+" to Backup")
+    a=[i for i, x in enumerate(coremem) if x == cc[0]]
+    if not a:
+        coremem=coremem+["<backup>"]+getfile(self)+["</backup>"]
+    else:
+        coremem = coremem[:a[0]]+getfile(self)+coremem[a[0]+len(cc):]
+    savefile("_core/corememory.txt",coremem)
     log("Backup check complete",1)
 
 def chkvar(var="",defa=""):
@@ -140,7 +161,7 @@ def getrange(data=[],searcha="",searchb="",defa="",ic=1):
 
 def getdat(data=[],search="",defa=""):
     for x in data:
-        if search in x:
+        if search in x or x in search:
             return x
     return defa
 
@@ -175,6 +196,17 @@ def genwindow(title="",width=0,height=0,mwidth=0,mheight=0,posx=0,posy=0,resize=
         new.resizable(0,0)
     new.geometry("+"+str(posx)+"+"+str(posy))
     return new
+
+def getgeometry():
+    r=Tk()
+    r.update_idletasks()
+    r.attributes('-fullscreen', True)
+    r.state('iconic')
+    g=r.winfo_geometry()
+    r.destroy()
+    a=g.split("+")
+    b=a[0].split("x")
+    return int(b[0]),int(b[1]),int(a[1]),int(a[2])
 
 def seticon(main,icon=iconpath):
     try:

@@ -1,49 +1,50 @@
 LOaBIS:
 
-1) Loading itself                                     check
-    1) initialise Software                            check
-    2) fetch Module list                              check
-    3) fetch module details (including core)          check
-        1) version                                    check
-        2) name                                       check
-        3) dependencies                               check
-    4) remove non functioning Modules                 Check
-        1) if a dependency is not loaded              check
-        2) if the version is incompatible             Check
-    5) fetch module commands/functions                check
-    6) fetch miscellaneous module details             check
-        1) startfuncs                                 check
-        2) endfuncs                                   check
-        3) persistfuncs                               check
-        4) replacement functions                      check
-    7) execute startfuncs                             check
-        1) check LOaBIS backup                        check
-        2) compare backup to current                  check
-        3) ask for password                           check
-        4) replace backup or code depending on pass   check
-    8) launch persistence script                      ~
-    9) launch ui                                      .
+1) Loading itself								check
+    1) initialise Software							check
+    2) fetch Module list							check
+    3) fetch module details (including core)					check
+        1) version								check
+        2) name									check
+        3) dependencies								check
+    4) remove non functioning Modules						Check
+        1) if a dependency is not loaded					check
+        2) if the version is incompatible					Check
+    5) fetch module commands/functions						check
+    6) fetch miscellaneous module details					check
+        1) startfuncs 								check
+        2) endfuncs								check
+        3) persistfuncs								check
+        4) replacement functions						check
+    7) execute startfuncs							check
+        1) check LOaBIS backup							check
+        2) compare backup to current						check
+        3) ask for password							check
+        4) replace backup or code depending on pass				check
+    8) launch persistence script						~
+    9) launch ui								check
 
-2) User interface
-    1) tkinter .tkk based
-    2) text to speech/ speech to text compatible?
-    3) terminal/gui choice
-    4) small version (think taskbar) or large (think cortana) available
-    5) super easy to replace/modify
-    6) use the developed LOaBIS Icons
+2) User interface								~
+    1) tkinter .tkk based							check
+    2) text to speech/ speech to text compatible?				.
+    3) terminal/gui choice							~
+    4) small version (think taskbar) or large (think cortana) available		~
+    5) super easy to replace/modify						~
+    6) use the developed LOaBIS Icons						.
 
-3) module creation wizard
-    1) actually finish the damned thing
-    2) automatic github module area creation
-    3) Basically this is a super barebones atom for github type thing
+3) module creation wizard							.
+    1) actually finish the damned thing						.
+    2) automatic github module area creation					.
+    3) Basically this is a super barebones atom for github type thing		.
 
-4) module installer
-    1) use github installation rather than dropbox
-    2) maybe ui overhaul?
-    3) faster loading method (downloading all the modules first is okay if there's 5 or 6 modules at most)
+4) module installer								.
+    1) use github installation rather than dropbox				.
+    2) maybe ui overhaul?							.
+    3) faster loading method							.
+(downloading all the modules first is okay if there's 5 or 6 modules at most)
 
-5) persistence module
+5) persistence module								.
     1) does what it says on the tin
 
-6) move modules to github
+6) move modules to github							.
     1) does what it says on the tin

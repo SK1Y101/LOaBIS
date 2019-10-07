@@ -11,6 +11,7 @@ globals()["endfunc"]=[]
 globals()["funcs"]=[]
 globals()["cwords"]=[]
 globals()["desc"]=[]
+globals()["ui"]=[]
 
 def module(name="",version="",longname="",url="",author=""):
     '''defines the module, allowing it to be loaded into loabis'''

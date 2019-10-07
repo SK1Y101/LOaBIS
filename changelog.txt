@@ -7,3 +7,4 @@ added the program to github to allow for better sharing and editing
 Some mild optimisation, redundancies in the original codebase should have hopefully been omitted
 Updated readme.md with future plans, etc…
 added the ability for modules to use builtin LOaBIS functions, such as "say" and "log", by using a bit of sys hackery
+created a standard UI, which can be modified by users in future
