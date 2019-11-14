@@ -214,16 +214,19 @@ if __name__=="__main__":
 
         for x in modules:
             importlib.reload(sys.modules[x])
-        
+
         elapsed(import_start,"Function initialisation")
-        
+
         log("Executing final procedures",1)
         if module.stafunc:
             log("Running startup functions",1)
             execute(module.stafunc,globals())
         if module.perfunc or module.pstfunc:
             log("Running persistence handler")
-        
+            pers=threading.Thread(name="Persistence",target=lambda:subprocess.call(["python","persistent.py",repr(modinfo)],creationflags=subprocess.CREATE_NEW_CONSOLE))
+            pers.start()
+            server,client=startsock()
+
         elapsed(start_time,"Startup")
 
         log("Initialisation complete, loading interface",1)
@@ -236,11 +239,15 @@ if __name__=="__main__":
         module.ui=False
 
         end_time=datetime.now()
+        if module.perfunc or module.pstfunc:
+            msg(client,"shutdown")
+            server.close()
         if module.endfunc:
             log("Running shutdown functions",1)
             execute(module.endfunc)
 
         elapsed(end_time,"Shutdown")
+        log("Software shutdown successfully\n",1)
 
     except Exception as e:
         elog(e)

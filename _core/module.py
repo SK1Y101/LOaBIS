@@ -13,7 +13,7 @@ globals()["cwords"]=[]
 globals()["desc"]=[]
 globals()["ui"]=[]
 
-def module(name="",version="",longname="",url="",author=""):
+def module(name="",version="",compatible="",longname="",url="",author=""):
     '''defines the module, allowing it to be loaded into loabis'''
     return True
 
