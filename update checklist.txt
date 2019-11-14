@@ -43,8 +43,11 @@ LOaBIS:
     3) faster loading method							.
 (downloading all the modules first is okay if there's 5 or 6 modules at most)
 
-5) persistence module								.
-    1) does what it says on the tin
+5) persistence module								~
+    1) does what it says on the tin						~
+    2) Executes functions every 30 minutes					.
+    3) User defined/function defined time period to wait			.
+    4) seperate script not affected by LOaBIS being open			.
 
 6) move modules to github							.
     1) does what it says on the tin

@@ -182,6 +182,29 @@ def savefile(dire="",data=[]):
     with open(dire,"w") as f:
         f.writelines(data)
 
+#socket server parsing
+def startsock(srvr=True,port=10000):
+    import socket
+    sck,cli=socket.socket(socket.AF_INET6,socket.SOCK_STREAM),""
+    if srvr:
+        sck.bind(("localhost",port))
+        sck.listen(1)
+        cli,adr=sck.accept()
+        msg(cli,"Connected")
+    else:
+        sck.connect(("localhost",port))
+    return sck,cli
+
+def msg(cli="",msg=""):
+    if not msg:
+        return str(cli.recv(int(cli.recv(4).decode("utf-8"))).decode("utf-8"))
+    else:
+        ln=setlen(str(len(msg)),4,1)
+        msg=str(msg)[0:10**4]
+        cli.send(str(ln).encode("utf-8"))
+        cli.send(str(msg).encode("utf-8"))
+        return msg
+
 #interface defaults below
 def genwindow(title="",width=0,height=0,mwidth=0,mheight=0,posx=0,posy=0,resize=True):
     log("generating tkinter window "+title)
