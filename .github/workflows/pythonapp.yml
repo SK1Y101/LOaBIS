@@ -27,3 +27,16 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+  automerge:
+  runs-on: ubuntu-latest
+  steps:
+    - name: automerge
+      uses: "pascalgn/automerge-action@733fcc62d711705eae9cd66fcf49c93c1d1a98c6"
+      env:
+        GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        MERGE_METHOD: "merge"
+        MERGE_COMMIT_MESSAGE: "pull-request-description"
+        MERGE_FORKS: "false"
+        UPDATE_LABELS: ""
+        UPDATE_METHOD: "merge"
