@@ -11,9 +11,8 @@ jobs:
         version: 3.7
     - name: Generate coverage report
       run: |
-        pip install pytest
-        pip install pytest-cov
-        pytest --cov=./ --cov-report=xml
+        pip install coverage
+        coverage run tests.py
     - name: Upload coverage to Codecov  
       uses: codecov/codecov-action@v1.0.3
       with:
