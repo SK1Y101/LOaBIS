@@ -1,6 +1,21 @@
-# LOaBIS
-Local Operations and Basic Intelligence System  
-(or affectionately, Loa)  
+<p align="center">
+    <img src="https://github.com/SK1Y101/LOaBIS/blob/master/Icons/LargeLogo.png">
+</p>
+<p align="center">
+  <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/SK1Y101/LOaBIS">
+  <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/SK1Y101/LOaBIS">
+  <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/y/SK1Y101/LOaBIS">
+  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/SK1Y101/LOaBIS">
+  <img alt="GitHub issues" src="https://img.shields.io/github/issues/SK1Y101/LOaBIS">
+  <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/SK1Y101/LOaBIS">
+</p>
+<p align="center">
+  <img alt="GitHub commits since latest release" src="https://img.shields.io/github/commits-since/SK1Y101/LOaBIS/latest">
+  <img alt="Workflow status" src="https://github.com/SK1Y101/LOaBIS/workflows/.github/workflows/pythonapp.yml/badge.svg">
+  <a href="https://codecov.io/gh/SK1Y101/LOaBIS">
+    <img src="https://codecov.io/gh/SK1Y101/LOaBIS/branch/master/graph/badge.svg" />
+  </a>
+</p>
 
 # About
 Loabis started as a simple program back in 2015, whose only purpose was to restore itself from a backup if it had been tampered with.  
@@ -14,14 +29,7 @@ The name LOaBIS actually originiates as a backronym, inspired by portals "GLaDOS
 
 # Creditation
 Author(s):  
-2015-Current:    Jack Lloyd-Walters  (Skiy)  
+2015-Current:    Jack Lloyd-Walters  (Skiy)
 
 Developer(s):  
-2015-Current:    Jack Lloyd-Walters  (Skiy)  
-2016-Current:    Luke Skinner        (Xectron)  
-
-Alpha Tester(s):  
-2016-Current:    Jack Lloyd-Walters  (Skiy)  
-
-Beta Tester(s):  
-None  
+2015-Current:    Jack Lloyd-Walters  (Skiy)
