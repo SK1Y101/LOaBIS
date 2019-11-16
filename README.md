@@ -31,8 +31,5 @@ Recent ideas, however, have returned to a simpler time, with the concept to buil
 The name LOaBIS actually originiates as a backronym, inspired by portals "GLaDOS", with The "Basic inteligence system" being the first conceptualisation, and various itterations, until eventually "Local opperations" was settled upon.  
 
 # Creditation
-Author(s):  
-2015-Current:    Jack Lloyd-Walters  (Skiy)
-
 Developer(s):  
-2015-Current:    Jack Lloyd-Walters  (Skiy)
+2015-Current:   - [Jack Lloyd-Walters](https://github.com/SK1Y101)
