@@ -2,7 +2,6 @@ pull_request_rules:
   - name: merge on CI success
     conditions:
       - status-success=Python application
-      - label=merge
     actions:
       merge:
         method: merge
