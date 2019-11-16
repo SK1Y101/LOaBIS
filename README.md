@@ -11,6 +11,7 @@
 </p>
 <p align="center">
   <img alt="GitHub commits since latest release" src="https://img.shields.io/github/commits-since/SK1Y101/LOaBIS/latest">
+  <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SK1Y101/LOaBIS">
   <img alt="Workflow status" src="https://github.com/SK1Y101/LOaBIS/workflows/.github/workflows/pythonapp.yml/badge.svg">
   <a href="https://codecov.io/gh/SK1Y101/LOaBIS">
     <img src="https://codecov.io/gh/SK1Y101/LOaBIS/branch/master/graph/badge.svg" />
