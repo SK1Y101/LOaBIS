@@ -161,8 +161,13 @@ def getrange(data=[],searcha="",searchb="",defa="",ic=1):
 
 def getdat(data=[],search="",defa=""):
     for x in data:
-        if search in x or x in search:
+        if search in x:
             return x
+        try:
+            if x in search:
+                return x
+        except:
+            pass
     return defa
 
 def getexcept(data=[],search="",defa=""):

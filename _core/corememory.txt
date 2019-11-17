@@ -136,14 +136,14 @@ if __name__=="__main__":
         log("Fetching dependancies",1)
 
         for x in _mods:
-            tmp=0
+            tmp,tma=[],[]
             if x[6]:
                 for y in x[6]:
-                    if not getdat(modinfo,y):
-                        log(str(y)+" not installed for "+str(x[0]),1)
+                    if getdat(getexcept(modinfo,x[0]),y):
+                        tma.append(modinfo.index(getdat(modinfo,y)))
+                    else:
                         stype[0]+=1
-                        tmp+=1
-                modinfo.append(modinfo.pop(modinfo.index(x)))
+                        tmp.append(y)
             for y in x[7]:
                 if not getdat(pipmods,y):
                     tmp+=module.inst(y)
@@ -152,10 +152,13 @@ if __name__=="__main__":
                 stype[b]+=1
                 stype[5-b].append(x[0]+" v"+x[1])
             else:
-                tmp+=1
-            if tmp>0:
+                tmp.append(1)
+            if tmp:
+                log(str(x[0])+" missing "+str(len(tmp))+" dependancies: "+str(tmp))
                 stype[5].append(x[0]+" v"+x[1])
                 modinfo.remove(x)
+            elif tma:
+                modinfo.insert(1+max(tma),x)
 
         for x in range(3):
             log(str(stype[2-x])+" "+str(stype[8-x])+" modules: "+str(stype[3+x]))
