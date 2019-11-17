@@ -15,6 +15,8 @@ pull_request_rules:
         strict: true
   - name: delete head branch after merge
     conditions:
+      - base=master
       - title=merge
+      - label!=work-in-progress
     actions:
       delete_head_branch: {}
