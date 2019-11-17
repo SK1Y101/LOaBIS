@@ -1,11 +1,18 @@
 pull_request_rules:
+  - name: remove outdated reviews
+    conditions:
+      - base=master
+    actions:
+      dismiss_reviews: {}
   - name: merge on CI success
     conditions:
       - base=master
       - label!=work-in-progress
+      - title=merge
     actions:
       merge:
         method: merge
+        strict: true
   - name: delete head branch after merge
     conditions: []
     actions:
