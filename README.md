@@ -43,8 +43,12 @@ Language:       - [Python]
 
 Merging:        - [mergify]
 
-### Developers:  
-2015-Current:   - [Jack Lloyd-Walters]
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://github.com/all-contributors/all-contributors#emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
 
 [Github releases]: https://github.com/SK1Y101/LOaBIS/releases
