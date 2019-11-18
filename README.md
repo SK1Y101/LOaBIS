@@ -6,20 +6,28 @@
   <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/SK1Y101/LOaBIS">
   <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/y/SK1Y101/LOaBIS">
   <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/SK1Y101/LOaBIS">
-  <img alt="GitHub issues" src="https://img.shields.io/github/issues/SK1Y101/LOaBIS">
-  <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/SK1Y101/LOaBIS">
+  <a href=https://github.com/SK1Y101/LOaBIS/issues>
+    <img alt="GitHub issues" src="https://img.shields.io/github/issues/SK1Y101/LOaBIS">
+  </a>
+  <a href=https://github.com/SK1Y101/LOaBIS/pulls>
+    <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/SK1Y101/LOaBIS">
+  </a>
 </p>
 <p align="center">
-  <img alt="GitHub commits since latest release" src="https://img.shields.io/github/commits-since/SK1Y101/LOaBIS/latest">
-  <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SK1Y101/LOaBIS">
+  <a href="https://github.com/SK1Y101/LOaBIS/releases">
+    <img alt="GitHub commits since latest release" src="https://img.shields.io/github/commits-since/SK1Y101/LOaBIS/latest">
+  </a>
+  <a href="https://github.com/SK1Y101/LOaBIS/releases">
+    <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SK1Y101/LOaBIS">
+  </a>
   <a href="https://codecov.io/gh/SK1Y101/LOaBIS">
     <img src="https://codecov.io/gh/SK1Y101/LOaBIS/branch/master/graph/badge.svg" />
   </a>
   <a href="https://snyk.io/test/github/SK1Y101/LOaBIS">
     <img src="https://snyk.io/test/github/SK1Y101/LOaBIS/badge.svg" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/github/SK1Y101/LOaBIS">
   </a>
-  <a href=https://mergify.io>
-      <img src="https://img.shields.io/endpoint.svg?url=https://gh.mergify.io/badges/SK1Y101/LOaBIS" alt="Mergify" src="https://img.shields.io/endpoint.svg?url=https://gh.mergify.io/badges/SK1Y101/LOaBIS">
+  <a href="https://mergify.io">
+    <img src="https://img.shields.io/endpoint.svg?url=https://gh.mergify.io/badges/SK1Y101/LOaBIS" alt="Mergify" src="https://img.shields.io/endpoint.svg?url=https://gh.mergify.io/badges/SK1Y101/LOaBIS"></a>
 </p>
 
 # Current Version: N/A
@@ -43,6 +51,8 @@ Language:       - [Python]
 
 Merging:        - [mergify]
 
+### Contributors
+2015-Current    - [Jack Lloyd-Walters]
 
 [Github releases]: https://github.com/SK1Y101/LOaBIS/releases
 [GitHub issues]: https://github.com/SK1Y101/LOaBIS/issues
