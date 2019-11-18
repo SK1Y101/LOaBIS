@@ -1,6 +1,5 @@
 import sys, time, ast, os, threading
 from LOaBIS import log, say
-from _core import *
 
 def main():
     logpers("Initialising")
@@ -8,8 +7,8 @@ def main():
     time.sleep(1)
     _funcs,_start=_fetchfuncs()
     logpers("Initialisation complete")
-    print(_start)
-    print(_funcs)
+    for x in _start:
+        globals()[str(x)]()
     while not closed:
         time.sleep(1)
 
@@ -21,7 +20,6 @@ def _fetchfuncs():
     logpers("fetching persistence functions")
     _funcs,_start=[],[]
     for x in _modinfo:
-        exec("from "+str(x[0])+" import *")
         for y in x[10]:
             _funcs.append(y)
         for y in x[11]:
@@ -44,9 +42,6 @@ def chkshut():
         logpers("LOaBIS not available, running seperately")
 
 def _fetchmods():
-    avoid=["__pycache__",".git"]
-    modules=getexcept(next(os.walk(os.getcwd()))[1],avoid)
-    modules.sort()
     modinfo,_mods=[],[]
     for x in modules:
         modinfo.append(getinfo(x))
@@ -77,6 +72,12 @@ def eplog(err ="",sy=1):
         say("Software encountered an error, consider submitting log to developers","Error",1)
 
 if __name__=="__main__":
+    from _core import getexcept
+    avoid=["__pycache__",".git"]
+    globals()["modules"]=getexcept(next(os.walk(os.getcwd()))[1],avoid)
+    modules.sort()
+    for x in modules:
+        exec("from "+str(x)+" import *")
     main()
     #except Exception as e:
         #eplog(e)
