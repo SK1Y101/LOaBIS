@@ -1,5 +1,6 @@
 import sys, time, ast, os, threading
 from LOaBIS import log, say
+from datetime import datetime
 
 def main():
     logpers("Initialising")
@@ -7,10 +8,41 @@ def main():
     time.sleep(1)
     _funcs,_start=_fetchfuncs()
     logpers("Initialisation complete")
-    for x in _start:
-        globals()[str(x)]()
-    while not closed:
-        time.sleep(1)
+    if _start:
+        logpers("Running "+str(len(_start))+" startup functions, "+str(_start))
+        a=[]
+        for x in _start:
+            try:
+                globals()[str(x)]()
+            except:
+                a.append(x)
+                _start.remove(x)
+        logpers("Could not execute: "+str(a))
+    else:
+        logpers("No startup functions found")
+    if _funcs:
+        a,b=[],30
+        while not closed:
+            if checktime(b):
+                logpers("Running "+str(len(_funcs))+" persistence functions, "+str(_funcs))
+                for x in _funcs:
+                    try:
+                        globals()[str(x)]()
+                    except:
+                        a.append(x)
+                        _funcs.remove(x)
+                logpers("Could not execute: "+str(a))
+    else:
+        logpers("No persistence functions found")
+
+def checktime(wait_time=1):
+    a=datetime.now()
+    if int(a.minute)%wait_time==0:
+        if a.second==0:
+            time.sleep(2)
+            return True
+        else:
+            return False
 
 def _fetchfuncs():
     try:
