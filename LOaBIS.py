@@ -17,7 +17,7 @@ def log(txt="",sy=0):
     with open("log.txt","a") as y:
         y.write("["+str(datetime.now())+"] - "+txt[0].upper()+txt[1:]+"\n")
     if sy:
-        say(txt)
+        say(txt,console=1)
 
 def elog(err="",sy=1):
     log("Error: "+str(type(err))+"; "+str(err))
@@ -224,7 +224,7 @@ if __name__=="__main__":
         if module.stafunc:
             log("Running startup functions",1)
             execute(module.stafunc,globals())
-        if module.perfunc or module.pstfunc:
+        if (module.perfunc or module.pstfunc) and getelse(module.settings,"persist",False):
             log("Running persistence handler")
             pers=threading.Thread(name="Persistence",target=lambda:subprocess.call(["python","persistent.py",repr(modinfo)],creationflags=subprocess.CREATE_NEW_CONSOLE))
             pers.start()
@@ -233,16 +233,17 @@ if __name__=="__main__":
         elapsed(start_time,"Startup")
 
         log("Initialisation complete, loading interface",1)
-        _ui=threading.Thread(target=interface,name="Ui",daemon=True)
-        _ui.start()
-        time.sleep(1)
+        if getelse(module.settings,"gui",False):
+            _ui=threading.Thread(target=interface,name="Ui",daemon=True)
+            _ui.start()
+            time.sleep(1)
 
         while not globals()["shutdown"]:
             globals()["shutdown"]=getcom(listen("What would you like to do?"))
         module.ui=False
 
         end_time=datetime.now()
-        if module.perfunc or module.pstfunc:
+        if (module.perfunc or module.pstfunc) and module.settings["persist"]:
             msg(client,"shutdown")
             server.close()
         if module.endfunc:

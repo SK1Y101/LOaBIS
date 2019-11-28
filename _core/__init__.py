@@ -1,13 +1,13 @@
-import os, sys, subprocess
+import os, sys, subprocess, ast
 from tkinter import *
 from tkinter.ttk import *
 
 sys.path.insert(1, os.getcwd())
 from LOaBIS import *
+from _core import module
 
 ostype=sys.platform
 globals()["sep"]="/"
-globals()["coremem"]=[]
 globals()["self"]=str(os.path.basename(sys.argv[0]))
 globals()["iconpath"]=[]
 if "win" in ostype:
@@ -26,20 +26,40 @@ def setup():
     module.persist()
     module.replace()
 
-def getcore():
+def gettags():
     log("Retrieving Backup",1)
     try:
-        globals()["coremem"]=getfile("_core/corememory.txt")
-        log("Backup retrieved")
+        a,cm={},getfile("_core/corememory.txt")
+        for x in cm:
+            if x[0]=="<":
+                b=x.replace("/","").split(">")[0].replace("<","")
+                if x[1]=="/":
+                    a[b]=cm[a[b]:cm.index(x)]
+                else:
+                    a[b]=cm.index(x)+1
+        module.coremem=a
+        module.settings=getsettings()
     except:
-        globals()["coremem"]=[]
         log("Backup not found")
 
+def dictlist(di={},pr=1,sep="=",div="\n"):
+    a=[]
+    for x in di:
+        if pr:
+            a+=["<"+str(x)+">"+str(div)]
+            if di[x]==list(di[x]):
+                a+=di[x]
+            else:
+                a+=[di[x]+str(div)]
+            a+=["</"+str(x)+">"+str(div)]
+        else:
+            a+=[str(x)+str(sep)+str(di[x])+str(div)]
+    return a
+
 def backup():
-    global coremem
-    if not coremem:
-        getcore()
-    cc=getrange(coremem,"<backup>","</backup>",getfile(self),0)
+    if not module.coremem:
+        gettags()
+    cc=getelse(module.coremem,"backup",getfile(self))
     log("Comparing "+str(self)+" to Backup")
     if getfile(self)!=cc:
         log("Core modified, requesting pass")
@@ -47,27 +67,33 @@ def backup():
             savefile(self,cc)
             log("Core restored to backup")
         else:
-            a=[i for i, x in enumerate(coremem) if x == cc[0]]
-            coremem = coremem[:a[0]]+getfile(self)+coremem[a[0]+len(cc):]
-            savefile("_core/corememory.txt",coremem)
+            module.coremem["backup"]=getfile(self)
+            savefile("_core/corememory.txt",dictlist(module.coremem))
             log("Core overwrite authorised")
     log("Backup check complete",1)
 
 def closesoftware(text=""):
     return True
 
+def getsettings():
+    if not module.coremem:
+        gettags()
+    a={}
+    log("Fetching settings")
+    for x in module.coremem["settings"]:
+        b=x.replace("\n","").split("=")
+        a[b[0]]=ast.literal_eval(b[1])
+    log("Settings Retrieved: "+str(a).replace(": ","="))
+    return a
+
 def forcebackup():
-    global coremem
-    if not coremem:
-        getcore()
-    cc=getrange(coremem,"<backup>","</backup>",getfile(self),0)
-    log("Comparing "+str(self)+" to Backup")
-    a=[i for i, x in enumerate(coremem) if x == cc[0]]
-    if not a:
-        coremem=coremem+["<backup>"]+getfile(self)+["</backup>"]
-    else:
-        coremem = coremem[:a[0]]+getfile(self)+coremem[a[0]+len(cc):]
-    savefile("_core/corememory.txt",coremem)
+    if not module.coremem:
+        gettags()
+    log("forcing "+str(self)+" backup")
+    del module.coremem["backup"]
+    module.coremem["settings"]=dictlist(module.settings,0)
+    module.coremem["backup"]=getfile(self)
+    savefile("_core/corememory.txt",dictlist(module.coremem))
     log("Backup check complete",1)
 
 def chkvar(var="",defa=""):
@@ -169,6 +195,13 @@ def getdat(data=[],search="",defa=""):
         except:
             pass
     return defa
+
+def getelse(data={},key="",defa=""):
+    try:
+        return data[key]
+    except:
+        data[key]=defa
+        return defa
 
 def getexcept(data=[],search="",defa=""):
     tmp=data

@@ -12,6 +12,8 @@ globals()["funcs"]=[]
 globals()["cwords"]=[]
 globals()["desc"]=[]
 globals()["ui"]=[]
+globals()["coremem"]={}
+globals()["settings"]={}
 
 def module(name="",version="",compatible="",longname="",url="",author=""):
     '''defines the module, allowing it to be loaded into loabis'''
