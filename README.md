@@ -1,27 +1,41 @@
-# LOaBIS
-Local Operations and Basic Intelligence System  
-(or affectionately, Loa)  
-  
-# Plans  
-Interfaces:  
-    1) basic default ui (integration of the old basicui module).  
-    2) speech-to-text and text-to-speech capabilities.  
-    3) module creation wizard (possibly as a seperate program).  
-    4) module installer.  
-  
-Admin:  
-    1) cleaner codebase, easier readability.  
-    2) github hosting and collaboration.  
-  
-Utilisation:   
-    1) running, opening, creating, and editing other programs. (Using other programs, and being used by them)  
-    2) "smart" code, possible expansion into neural networks (the current function execution is very stupid, possible development for a more intuitive utilisation).  
-    3) memory sharing between loabi, and communication between, so as to allow faster learning of the above.  
-    4) automate downloading of updates (to self, modules, and python dependancies).  
-    5) stand-alone portable version.  
-    6) mobile integration.  
-  
-# About
+<p align="center">
+    <img src="https://github.com/SK1Y101/LOaBIS/blob/master/Icons/LargeLogo.png">
+</p>
+<p align="center">
+  <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/SK1Y101/LOaBIS">
+  <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/SK1Y101/LOaBIS">
+  <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/y/SK1Y101/LOaBIS">
+  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/SK1Y101/LOaBIS">
+  <a href=https://github.com/SK1Y101/LOaBIS/issues>
+    <img alt="GitHub issues" src="https://img.shields.io/github/issues/SK1Y101/LOaBIS">
+  </a>
+  <a href=https://github.com/SK1Y101/LOaBIS/pulls>
+    <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/SK1Y101/LOaBIS">
+  </a>
+</p>
+<p align="center">
+  <a href="https://github.com/SK1Y101/LOaBIS/releases">
+    <img alt="GitHub commits since latest release" src="https://img.shields.io/github/commits-since/SK1Y101/LOaBIS/latest">
+  </a>
+  <a href="https://github.com/SK1Y101/LOaBIS/releases">
+    <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SK1Y101/LOaBIS">
+  </a>
+  <a href="https://codecov.io/gh/SK1Y101/LOaBIS">
+    <img src="https://codecov.io/gh/SK1Y101/LOaBIS/branch/master/graph/badge.svg" />
+  </a>
+  <a href="https://snyk.io/test/github/SK1Y101/LOaBIS">
+    <img src="https://snyk.io/test/github/SK1Y101/LOaBIS/badge.svg" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/github/SK1Y101/LOaBIS">
+  </a>
+  <a href="https://mergify.io">
+    <img src="https://img.shields.io/endpoint.svg?url=https://gh.mergify.io/badges/SK1Y101/LOaBIS" alt="Mergify" src="https://img.shields.io/endpoint.svg?url=https://gh.mergify.io/badges/SK1Y101/LOaBIS"></a>
+</p>
+
+# Current Version: N/A
+**Download** : **[Github releases]**
+
+**support** : [Github issues]
+
+# History
 Loabis started as a simple program back in 2015, whose only purpose was to restore itself from a backup if it had been tampered with.  
 This idea slowly evolved into creating a Virtual Personal Assistant in pure python, adding file opening, then google searching until loabis was conceptualised how you see it being developed today.  
 
@@ -32,18 +46,16 @@ Recent ideas, however, have returned to a simpler time, with the concept to buil
 The name LOaBIS actually originiates as a backronym, inspired by portals "GLaDOS", with The "Basic inteligence system" being the first conceptualisation, and various itterations, until eventually "Local opperations" was settled upon.  
 
 # Creditation
-Author(s):  
-2015-Current:    Jack Lloyd-Walters  (Skiy)  
+### Tools
+Language:       - [Python]
 
-Developer(s):  
-2015-Current:    Jack Lloyd-Walters  (Skiy)  
-2016-2018:       Luke Skinner        (Xectron)  
+Merging:        - [mergify]
 
-Alpha Tester(s):  
-2016-Current:    Jack Lloyd-Walters  (Skiy)  
+### Contributors
+2015-Current    - [Jack Lloyd-Walters]
 
-Beta Tester(s):  
-None  
-
-Resources:
-Python:          
+[Github releases]: https://github.com/SK1Y101/LOaBIS/releases
+[GitHub issues]: https://github.com/SK1Y101/LOaBIS/issues
+[Python]: https://www.python.org/
+[mergify]: https://mergify.io
+[Jack Lloyd-Walters]: https://github.com/SK1Y101
